@@ -1,0 +1,25 @@
+{
+  "name": "proposify-automation-project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "create-allure-report": "allure generate allure-results --single-file --clean -o playwright-report/allure-report"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.49.0",
+    "@types/node": "^22.10.1",
+    "@zerostep/playwright": "^0.1.5",
+    "allure-commandline": "^2.30.0",
+    "allure-js-commons": "^3.0.0-beta.12",
+    "allure-playwright": "^3.0.0-beta.12",
+    "artillery": "^2.0.21",
+    "cross-env": "^7.0.3"
+  },
+  "dependencies": {
+    "chromium-bidi": "^0.10.1"
+  }
+}
