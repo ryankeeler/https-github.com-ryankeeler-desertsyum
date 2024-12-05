@@ -24,6 +24,14 @@ export class LoginPage {
     }
 
     async loginToProposify(username: string, password: string) {
+         // Access the GitHub secrets passed in as environment variables
+        const username = process.env.PROPOSIFY_USERNAME;
+        const password = process.env.PROPOSIFY_PASSWORD;
+
+        // Ensure the username and password are available
+        if (!username || !password) {
+            throw new Error('Username or password is missing.');
+        }
         await expect(this.username_textbox).toBeVisible({timeout: 10000});
         await this.username_textbox.fill(username)
         await this.password_textbox.fill(password)
