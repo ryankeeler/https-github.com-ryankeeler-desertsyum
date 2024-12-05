@@ -5,7 +5,7 @@ on:
 jobs:
   test:
     timeout-minutes: 150
-    runs-on: ubuntu-latest  # Change this to use GitHub-hosted runners
+    runs-on: windows-latest  # Change this to use GitHub-hosted runners
     
     steps:
     - uses: actions/checkout@v4
