@@ -23,18 +23,40 @@ export class LoginPage {
         return instance;
     }
 
-    async loginToProposify(username: string, password: string) {
-         // Access the GitHub secrets passed in as environment variables
-        const username = process.env.PROPOSIFY_USERNAME;
-        const password = process.env.PROPOSIFY_PASSWORD;
+ async loginToProposify() {
+        let username: string;
+        let password: string;
 
-        // Ensure the username and password are available
+        // Check if we're running on GitHub Actions (CI environment)
+        if (process.env.CI) {
+            // Use GitHub secrets when running on CI (GitHub Actions)
+            username = process.env.PROPOSIFY_USERNAME;
+            password = process.env.PROPOSIFY_PASSWORD;
+
+            if (!username || !password) {
+                throw new Error('GitHub secrets (username or password) are missing.');
+            }
+        } else {
+            // Use local credentials.json when not on CI (local environment)
+            const credentialsPath = path.join(__dirname, 'credentials.json');
+            if (fs.existsSync(credentialsPath)) {
+                const credentials = JSON.parse(fs.readFileSync(credentialsPath, 'utf-8'));
+                username = credentials.username;
+                password = credentials.password;
+            } else {
+                throw new Error('Local credentials.json file not found.');
+            }
+        }
+
+        // Ensure username and password are available
         if (!username || !password) {
             throw new Error('Username or password is missing.');
         }
-        await expect(this.username_textbox).toBeVisible({timeout: 10000});
-        await this.username_textbox.fill(username)
-        await this.password_textbox.fill(password)
+
+        // Fill in the login form
+        await expect(this.username_textbox).toBeVisible({ timeout: 10000 });
+        await this.username_textbox.fill(username);
+        await this.password_textbox.fill(password);
 
         await this.login_button.click();
     }
