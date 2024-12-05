@@ -78,7 +78,7 @@ export class CreateDocumentPage {
         await expect(editContentContainer).toBeVisible();
         await editContentContainer.click();
 
-        await expect(editContentContainer.locator('[role="rowgroup"]')).toBeVisible(); //add selectors at the top
+        await expect(editContentContainer.locator('[role="rowgroup"]')).toBeVisible();
         let allRows = await editContentContainer.locator('[role="rowgroup"]').locator('[role="row"]').all();
         await allRows[1].dblclick({ force: true });
 
