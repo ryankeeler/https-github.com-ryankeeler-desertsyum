@@ -18,7 +18,7 @@ jobs:
       run: |
         npm ci;
         npx playwright install --with-deps;
-        npx playwright test --headed --workers 3;
+        npx playwright test --headed --workers 1;
         npm run create-allure-report
        
     - name: Upload artifacts
