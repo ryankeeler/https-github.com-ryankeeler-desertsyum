@@ -1,18 +1,21 @@
 name: Proposify Playwright Tests
 on:
   workflow_dispatch:
+  
 jobs:
   test:
     timeout-minutes: 150
-    runs-on:
-      - self-hosted
+    runs-on: ubuntu-latest  # Change this to use GitHub-hosted runners
+    
     steps:
     - uses: actions/checkout@v4
+    
     - uses: actions/setup-node@v4
       with:
         node-version: lts/*
+    
     - name: Navigating to the playwright project, installing dependencies, and running tests
-      run: 
+      run: |
         npm ci;
         npx playwright install --with-deps;
         npx playwright test --headed --workers 3;
@@ -27,4 +30,3 @@ jobs:
             ./playwright-report/*.html
             ./playwright-report/allure-report/*.html
         retention-days: 30
-        
