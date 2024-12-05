@@ -30,6 +30,11 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+     /* Enable video recording for all tests */
+    video: 'retain-on-failure', // 'on' (always) or 'retain-on-failure' (only on failure)
+
+    /* Enable screenshots */
+    screenshot: 'on', // 'on' (always) or 'only-on-failure' (only on failure)
   },
 
   /* Configure projects for major browsers */
