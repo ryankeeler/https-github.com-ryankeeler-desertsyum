@@ -13,14 +13,9 @@ test('Question 2: Text table', async ({ page }) => {
   // Navigate to the login page
   await navigateToLoginPage(page);
 
-  // Get random credentials
-  const { username, password } = await getRandomCredentials();
-
   // Get the instance of the login page
   const loginPage = await LoginPage.getInstance(page);
-
-  // Pass the random username and password as parameters
-  await loginPage.loginToProposify(username, password);
+  await loginPage.loginToProposify();
 
   const homePage = await HomePage.getInstance(page)
   await homePage.createNewDocument('Try Editor 3.0')
@@ -54,14 +49,9 @@ test('Question 2: Pricing table', async ({ page }) => {
   // Navigate to the login page
   await navigateToLoginPage(page);
 
-  // Get random credentials
-  const { username, password } = await getRandomCredentials();
-
   // Get the instance of the login page
   const loginPage = await LoginPage.getInstance(page);
-
-  // Pass the random username and password as parameters
-  await loginPage.loginToProposify(username, password);
+  await loginPage.loginToProposify();
 
   const homePage = await HomePage.getInstance(page)
   await homePage.createNewDocument('Try Editor 3.0')
@@ -101,14 +91,9 @@ test('Question 3: Resize uploaded image', async ({ page }) => {
   // Navigate to the login page
   await navigateToLoginPage(page);
 
-  // Get random credentials
-  const { username, password } = await getRandomCredentials();
-
   // Get the instance of the login page
   const loginPage = await LoginPage.getInstance(page);
-
-  // Pass the random username and password as parameters
-  await loginPage.loginToProposify(username, password);
+  await loginPage.loginToProposify();
 
   const homePage = await HomePage.getInstance(page)
   await homePage.createNewDocument('Try Editor 3.0')
@@ -137,8 +122,6 @@ test('Question 3: Resize uploaded image', async ({ page }) => {
 //Currently it can only be run on chromium as AI is integrated with chromium only
 
 test('Question 3: Resize uploaded image using AI', async ({ page }) => {
-  // Get random credentials
-  const { username, password } = await getRandomCredentials();
   const aiArgs = { page, test }
 
   // Navigate to the login page
@@ -146,8 +129,7 @@ test('Question 3: Resize uploaded image using AI', async ({ page }) => {
 
 
   let loginPage = await LoginPage.getInstance(page)
-  // Pass the random username and password as parameters
-  await loginPage.loginToProposify(username, password);
+  await loginPage.loginToProposify();
 
   const homePage = await HomePage.getInstance(page)
   await expect(homePage.new_document_button).toBeVisible({ timeout: 10000 });
