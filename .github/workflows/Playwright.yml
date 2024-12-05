@@ -20,6 +20,10 @@ jobs:
         npx playwright install --with-deps;
         npx playwright test --headed --workers 1;
         npm run create-allure-report
+
+      env:
+        PROPOSIFY_USERNAME: ${{ secrets.PROPOSIFY_USERNAME }}
+        PROPOSIFY_PASSWORD: ${{ secrets.PROPOSIFY_PASSWORD }}
        
     - name: Upload artifacts
       if: always()
